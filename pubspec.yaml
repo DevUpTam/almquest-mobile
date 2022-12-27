@@ -21,12 +21,17 @@ dependencies:
   http: ^0.13.5
   google_sign_in: ^5.4.2
   geocoder: ^0.2.1
-
+  getwidget: ^2.0.4
+  vertical_card_pager: ^1.4.0
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^2.0.0
+
+assets:
+    - assets/Charity-bro.svg
 
 flutter:
   uses-material-design: true
