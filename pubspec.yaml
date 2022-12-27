@@ -23,22 +23,26 @@ dependencies:
   geocoder: ^0.2.1
   getwidget: ^2.0.4
   vertical_card_pager: ^1.4.0
-  
+  pusher_websocket_flutter: ^0.2.0
+  intl: ^0.18.0
+  dio:
+  flutter_polyline_points:
+  google_maps_flutter:
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^2.0.0
 
-assets:
-    - assets/Charity-bro.svg
+
 
 flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+    - assets/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

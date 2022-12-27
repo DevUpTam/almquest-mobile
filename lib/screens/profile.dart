@@ -53,7 +53,7 @@ class _ProfileState extends State<Profile> {
 
   Widget profileItem(IconData icon, String title) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
       child: Row(
         children: [
           Icon(
@@ -68,6 +68,7 @@ class _ProfileState extends State<Profile> {
                 color: kTextColor,
                 overflow: TextOverflow.ellipsis,
                 fontSize: 15,
+                fontWeight: FontWeight.bold,
               ),
             ),
           ),
@@ -106,12 +107,6 @@ class _ProfileState extends State<Profile> {
               actions: [
                 Row(
                   children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.notifications_outlined,
-                      ),
-                    ),
                     PopUpMenu(
                       menuList: const [
                         PopupMenuItem(
@@ -192,7 +187,7 @@ class _ProfileState extends State<Profile> {
                           ),
                           onBackgroundImageError: (exception, stackTrace) {
                             userImg =
-                                "https://t4.ftcdn.net/jpg/03/26/98/51/360_F_326985142_1aaKcEjMQW6ULp6oI9MYuv8lN9f8sFmj.jpg";
+                                "https://res.cloudinary.com/locer/image/upload/v1672113907/default_user.png";
                             setState(() {});
                           },
                         ),
@@ -208,12 +203,6 @@ class _ProfileState extends State<Profile> {
                 alignment: Alignment.topCenter,
                 children: [
                   Card(
-                    shape: RoundedRectangleBorder(
-                      side: const BorderSide(
-                        color: kLightTextColor,
-                      ),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
                     margin: const EdgeInsets.only(
                       left: 20,
                       right: 20,
@@ -225,7 +214,6 @@ class _ProfileState extends State<Profile> {
                     child: Padding(
                       padding: const EdgeInsets.all(16),
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           const SizedBox(height: 70),
                           Text(
@@ -239,33 +227,29 @@ class _ProfileState extends State<Profile> {
                             ),
                           ),
                           const SizedBox(height: 15),
-                          Card(
-                            color: kBackgroundColor,
-                            shape: RoundedRectangleBorder(
-                              side: const BorderSide(
-                                color: kTextColor,
-                              ),
+                          Container(
+                            padding: const EdgeInsets.all(16),
+                            decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
+                              color: Colors.white12,
                             ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(10),
-                              child: Text(
-                                widget.userType == "donor"
-                                    ? "Lifetime Donation: ${user["lifetimeDonation"]}"
-                                    : "Lifetime Distribution: ${user["totalPackagesDistributed"]}",
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                  color: kTextColor,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                            child: Text(
+                              widget.userType == "donor"
+                                  ? "Lifetime Donation: ${user["lifetimeDonation"]}"
+                                  : "Lifetime Distribution: ${user["totalPackagesDistributed"]}",
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                color: kTextColor,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
+                          const SizedBox(height: 12),
                           profileItem(
-                            CupertinoIcons.person_circle,
+                            CupertinoIcons.checkmark_seal,
                             widget.userType == "donor"
-                                ? "AlmQuest Donor"
-                                : "AlmQuest Distributor",
+                                ? "AlmQuest Verified Donor"
+                                : "AlmQuest Verified Distributor",
                           ),
                           profileItem(CupertinoIcons.mail, user["email"]),
                           profileItem(
@@ -288,8 +272,8 @@ class _ProfileState extends State<Profile> {
                                   "${user["maxCapacity"]}  units",
                                 ),
                           profileItem(
-                            CupertinoIcons.car_detailed,
-                            "${user["distanceRange"]}  kilometres",
+                            Icons.travel_explore,
+                            "${user["distanceRange"]}  Kilometres",
                           ),
                           widget.userType == "distributor"
                               ? ListTile(
@@ -326,7 +310,7 @@ class _ProfileState extends State<Profile> {
                                 )
                               : const SizedBox(height: 20),
                           Container(
-                            margin: const EdgeInsets.symmetric(horizontal: 8),
+                            margin: const EdgeInsets.symmetric(horizontal: 6),
                             child: ElevatedButton(
                               onPressed: () {
                                 Get.to(
@@ -338,10 +322,14 @@ class _ProfileState extends State<Profile> {
                                 );
                               },
                               style: ElevatedButton.styleFrom(
-                                  primary: const Color(0xFF3B81F6)),
+                                primary: const Color(0xFF3B81F6),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                              ),
                               child: const ListTile(
                                 trailing: Icon(
-                                  Icons.edit,
+                                  Icons.edit_location_outlined,
                                   color: kTextColor,
                                 ),
                                 title: Text(
@@ -359,13 +347,17 @@ class _ProfileState extends State<Profile> {
                           widget.userType == "donor"
                               ? Container(
                                   margin:
-                                      const EdgeInsets.symmetric(horizontal: 8),
+                                      const EdgeInsets.symmetric(horizontal: 6),
                                   child: ElevatedButton(
                                     onPressed: () {
                                       Get.to(() => Donate());
                                     },
                                     style: ElevatedButton.styleFrom(
-                                        primary: Colors.white10),
+                                      primary: Colors.white12,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(12),
+                                      ),
+                                    ),
                                     child: const ListTile(
                                       trailing: Icon(
                                         CupertinoIcons.gift,
@@ -400,7 +392,7 @@ class _ProfileState extends State<Profile> {
                           ),
                           onBackgroundImageError: (exception, stackTrace) {
                             userImg =
-                                "https://t4.ftcdn.net/jpg/03/26/98/51/360_F_326985142_1aaKcEjMQW6ULp6oI9MYuv8lN9f8sFmj.jpg";
+                                "https://res.cloudinary.com/locer/image/upload/v1672113907/default_user.png";
                             setState(() {});
                           },
                         ),
