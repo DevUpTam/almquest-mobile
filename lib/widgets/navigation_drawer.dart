@@ -1,6 +1,19 @@
+import 'package:almquest/screens/homescreens/features.dart';
 import 'package:almquest/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:almquest/screens/homescreens/features.dart';
+import 'dart:convert';
+import 'package:almquest/screens/screens.dart';
+import 'package:almquest/utils/constants.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../widgets/navigation_drawer.dart';
+import '../widgets/popup_menu.dart';
 
 class NavigationDrawer extends StatelessWidget {
   @override
@@ -15,6 +28,22 @@ class NavigationDrawer extends StatelessWidget {
           child: Wrap(
             runSpacing: 14,
             children: [
+              ListTile(
+                onTap: () {
+                  Get.to(() => Home());
+                },
+                leading: const Icon(
+                  CupertinoIcons.question_circle,
+                  color: kTextColor,
+                ),
+                title: const Text(
+                  "Home",
+                  style: TextStyle(
+                    color: kTextColor,
+                    fontSize: 14,
+                  ),
+                ),
+              ),
               ListTile(
                 onTap: () {
                   Navigator.of(context).pop();
@@ -65,7 +94,7 @@ class NavigationDrawer extends StatelessWidget {
               ),
               ListTile(
                 onTap: () {
-                  Navigator.of(context).pop();
+                  Get.to(() => Features());
                 },
                 leading: const Icon(
                   CupertinoIcons.scope,
